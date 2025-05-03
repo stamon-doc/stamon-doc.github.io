@@ -60,14 +60,14 @@ def gen_gitlog(src: str) -> None:
 
 def gen_htmls(src: str, dst: str) -> None:
     # 遍历src目录下的markdown，生成html并存入到dst目录下
-    # 生成html时会附加template_header.md
+    # 生成html时会附加stamon-doc.md
     
     print('converting to html...',end='',flush=True)
     
     files = os.listdir(src)
     for f in files:
         if os.path.isfile(os.path.join(src, f)):
-            os.system('pandoc -f markdown -t html -s template-header.md '+os.path.join(src, f)+' -o '+os.path.join(dst, f[0:-3]+'.html'))
+            os.system('pandoc -f markdown -t html -s stamon-doc.md '+os.path.join(src, f)+' -o '+os.path.join(dst, f[0:-3]+'.html'))
 
     print('done')
 
