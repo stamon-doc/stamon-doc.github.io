@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>template-header</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 style="font-family: Arial; color: #00BBFF; text-align:center;">
+<i>Stamon 文档站</i>
+</h1>
+<p><a href="../index.html">回到首页</a> <br> <a
+href="index.html">回到上一级</a> <br></p>
+<h1
+id="stvc-tac二进制编码规范第二版">STVC-TAC二进制编码规范（第二版）</h1>
+<h3 id="前言">前言</h3>
+<p>在阅读本规范前，我们<strong>强烈建议</strong>先阅读<code>STVC-TAC中间代码规范.md</code>。</p>
+<p>由于<code>STVC-TAC中间代码规范.md</code>并没有对具体编码细节进行阐述，因此编写此文档进行补充。</p>
+<p>此文档仅作规范，并非唯一解决方案，开发者也可以制定自己的编码格式（但我们强烈建议制定的规范符合<code>STVC-TAC中间代码规范</code>）。</p>
+<h3 id="常量表">常量表</h3>
+<p>一个常量表由常量表长度（占4字节）和若干个常量组成，其中常量又由常量类型（占1字节）和常量值组成：</p>
+<p>其中每种类型的编码格式如下：</p>
+<ul>
+<li>整数类型：占4字节，即数值</li>
+<li>单精度浮点类型：占4字节，即数值</li>
+<li>双精度浮点类型：占8字节，即数值</li>
+<li>字符串类型：占4+len字节，其中前4字节记录字符串长度（即l，长度按字节计），后len字节为字符串值</li>
+<li>标识符类型：占4+len字节，其中前4字节记录标识符长度（即len，长度按字节计），后len字节为标识符名</li>
+</ul>
+<p>一个常量表下标默认为4字节。</p>
+<h3 id="语句">语句</h3>
+<p>其中第一条语句对应的操作码为<code>0x01</code>，第二条对应<code>0x02</code>，以此类推。</p>
+<p>这里需要特别说明一下，二进制布局的表示形式，操作数的二进制布局会用如下格式表示</p>
+<p><code>OPND1(size) OPND2(size) ...</code></p>
+<p>即每一个操作数的名字后面跟着这个操作数的长度。</p>
+<p>在了解了二进制布局的格式之后，我们来看看每条中间代码语句对应的二进制布局</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">中间代码</th>
+<th style="text-align: left;">对应的操作数二进制布局</th>
+<th style="text-align: left;">补充解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>x = ASSIGN y</code></td>
+<td style="text-align: left;"><code>x(4) y(4)</code></td>
+<td style="text-align: left;">x和y都是常量表下标</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>x = UNARY op y</code></td>
+<td style="text-align: left;"><code>x(4) op(4) y(4)</code></td>
+<td style="text-align: left;">x和y是常量表下标，op是一个整数</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>x = BINARY y op z</code></td>
+<td style="text-align: left;"><code>x(4) op(4) y(4) z(4)</code></td>
+<td style="text-align: left;">x和y和z是常量表下标，op是一个整数</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>x[index] = y</code></td>
+<td style="text-align: left;"><code>x(4) index(4) y(4)</code></td>
+<td style="text-align: left;">x和y和index都是常量表下标</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>x = y[index]</code></td>
+<td style="text-align: left;"><code>x(4) index(4) y(4)</code></td>
+<td style="text-align: left;">x和y和index都是常量表下标</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>x.member = y</code></td>
+<td style="text-align: left;"><code>x(4) member(4) y(4)</code></td>
+<td style="text-align: left;">x和y和member都是常量表下标</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>x = y.member</code></td>
+<td style="text-align: left;"><code>x(4) member(4) y(4)</code></td>
+<td style="text-align: left;">x和y和member都是常量表下标</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>goto addr</code></td>
+<td style="text-align: left;"><code>addr(4)</code></td>
+<td style="text-align: left;">addr代表跳转地址，是一个整数</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>if condition =&gt; addr</code></td>
+<td style="text-align: left;"><code>condition(4) addr(4)</code></td>
+<td
+style="text-align: left;">condition是一个常量表下标，addr是一个整数</td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><code>call result function arg1 arg2 ...</code></td>
+<td
+style="text-align: left;"><code>result(4) function(4) arglen(4) arg1(4) arg2(4) ...</code></td>
+<td
+style="text-align: left;">result、function、arg1、arg2等是常量表下标，arglen是一个整数，代表参数的个数</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>return value</code></td>
+<td style="text-align: left;"><code>value(4)</code></td>
+<td style="text-align: left;">value是一个常量表下标</td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><code>new object source arg1 arg2 ...</code></td>
+<td
+style="text-align: left;"><code>object(4) source(4) arglen(4) arg1(4) arg2(4) ...</code></td>
+<td
+style="text-align: left;">object、source、arg1、arg2等都是常量表下标，arglen是一个整数，代表参数的个数</td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><code>list identifier element1 element2...</code></td>
+<td
+style="text-align: left;"><code>identifier(4) arglen(4) element1(4) element2(4) ...</code></td>
+<td
+style="text-align: left;">identifier、element1、element2等都是常量表下标，arglen是一个整数，代表参数的个数</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>array identifier length</code></td>
+<td style="text-align: left;"><code>identifier(4) length(4)</code></td>
+<td style="text-align: left;">identifier和length都是常量表下标</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>free identifier</code></td>
+<td style="text-align: left;"><code>identifier(4)</code></td>
+<td style="text-align: left;">identifier是一个常量表下标</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>pushscope</code></td>
+<td style="text-align: left;"><code>nothing(0)</code></td>
+<td style="text-align: left;">没有任何操作数</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>popscope</code></td>
+<td style="text-align: left;"><code>nothing(0)</code></td>
+<td style="text-align: left;">没有任何操作数</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>def identifier</code></td>
+<td style="text-align: left;"><code>identifier(4)</code></td>
+<td style="text-align: left;">identifier是一个常量表下标</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>pushcatch addr</code></td>
+<td style="text-align: left;"><code>addr(4)</code></td>
+<td style="text-align: left;">addr是一个整数</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>popcatch</code></td>
+<td style="text-align: left;"><code>nothing(0)</code></td>
+<td style="text-align: left;">没有任何操作数</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>getexception identifier</code></td>
+<td style="text-align: left;"><code>identifier(4)</code></td>
+<td style="text-align: left;">identifier是一个常量表下标</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>sfn port arg</code></td>
+<td style="text-align: left;"><code>port(4) arg(4)</code></td>
+<td style="text-align: left;">port和arg都是常量表下标</td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><code>function identifier arg1 arg2...</code></td>
+<td
+style="text-align: left;"><code>identifier(4) arglen(4) arg1(4) arg2(4) ...</code></td>
+<td
+style="text-align: left;">identifier、arg1、arg2等都是常量表下标，arglen是一个整数，代表参数的个数</td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><code>class identifier member1 member2 * member3...</code></td>
+<td
+style="text-align: left;"><code>identifier(4) member1_methodflag(1) member1(4) member2_methodflag(1) member2(4) member3_methodflag(1) member3(4) ...</code></td>
+<td
+style="text-align: left;">identifier、member1、member2、member3等都是常量表下标，member1_methodflag、member2_methodflag、member3_methodflag等都是整数，表示其对应的类成员是否是类方法</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>end</code></td>
+<td style="text-align: left;"><code>nothing(0)</code></td>
+<td style="text-align: left;">没有任何操作数</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><a
+href="STVC-TAC二进制编码规范.gitlog.html">查看该文件的提交记录</a></p>
+</body>
+</html>

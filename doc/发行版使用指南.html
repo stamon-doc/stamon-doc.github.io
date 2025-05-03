@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>template-header</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 style="font-family: Arial; color: #00BBFF; text-align:center;">
+<i>Stamon 文档站</i>
+</h1>
+<p><a href="../index.html">回到首页</a> <br> <a
+href="index.html">回到上一级</a> <br></p>
+<h1 id="发行版使用指南">发行版使用指南</h1>
+<h5 id="配置运行时环境">配置运行时环境</h5>
+<p>Stamon的运行时环境非常简便，您只需要配置至少一个环境变量即可使用：</p>
+<ul>
+<li><code>STAMON</code>变量：该变量指向可执行文件所在的<strong>目录（而非文件）</strong></li>
+<li><strong>[非必要]</strong>
+<code>PATH</code>变量：在该变量末尾<strong>追加</strong>上可执行文件所在目录</li>
+</ul>
+<p>如果不配置PATH变量，则Stamon无法全局使用（即只能在可执行文件所在目录下使用），<strong>因此我们强烈建议您配置PATH变量</strong></p>
+<h5 id="运行指令">运行指令</h5>
+<p>Stamon目前支持以下指令：</p>
+<p><br></p>
+<ul>
+<li><code>stamon version</code>或<code>stamon -v</code></li>
+</ul>
+<p>该指令用于输出Stamon当前的版本号。</p>
+<p><br></p>
+<ul>
+<li><code>stamon help</code>或<code>stamon -h</code></li>
+</ul>
+<p>该指令用于输出Stamon的用法以及各种参数的介绍。</p>
+<p><br></p>
+<ul>
+<li><code>stamon build [src] [dst] [options...]</code>或<code>stamon -b [src] [dst] [options...]</code></li>
+</ul>
+<p>该指令用于编译Stamon代码，其中src为必要参数，表示编译的Stamon文件名，dst为可选参数，表示生成的字节码文件名（默认a.stvc），options为可选参数，他们包括：</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>参数用法</th>
+<th>功能</th>
+<th>默认值</th>
+<th>支持此参数的最低版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>–import=&lt;boolean&gt;</td>
+<td>是否支持引用源码</td>
+<td>true</td>
+<td>2.4.4</td>
+</tr>
+<tr>
+<td>–strip=&lt;boolean&gt;</td>
+<td>是否剥削字节码调试信息</td>
+<td>false</td>
+<td>2.4.4</td>
+</tr>
+<tr>
+<td>-I&lt;path&gt;</td>
+<td>待引用源码所在的路径</td>
+<td>无</td>
+<td>2.4.4</td>
+</tr>
+<tr>
+<td>–IgnoreWarning</td>
+<td>忽略警告</td>
+<td>默认只进行警告</td>
+<td>2.4.28</td>
+</tr>
+<tr>
+<td>–JustWarn</td>
+<td>只进行警告</td>
+<td>默认只进行警告</td>
+<td>2.4.28</td>
+</tr>
+<tr>
+<td>–FatalWarning</td>
+<td>将警告作为致命错误</td>
+<td>默认只进行警告</td>
+<td>2.4.28</td>
+</tr>
+<tr>
+<td>–locale=&lt;text&gt;</td>
+<td>指定程序运行的语言环境</td>
+<td>默认为当前系统的语言环境</td>
+<td>2.4.29</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li><code>stamon run [src] [options...]</code>或<code>stamon -r [src] [options...]</code></li>
+</ul>
+<p>该指令用于运行STVC文件，其中src为必要参数，表示编译的Stamon文件名，options为可选参数，他们包括：</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>参数用法</th>
+<th>功能</th>
+<th>默认值</th>
+<th>支持此参数的最低版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>–GC=&lt;boolean&gt;</td>
+<td>是否运行GC（垃圾自动回收）</td>
+<td>true</td>
+<td>2.4.4</td>
+</tr>
+<tr>
+<td>–MemLimit=&lt;Integer&gt;</td>
+<td>设置虚拟机的对象内存限制（按字节计）</td>
+<td>默认为16,777,216字节，即16MiB</td>
+<td>2.4.4</td>
+</tr>
+<tr>
+<td>–MemPoolCache=&lt;Integer&gt;</td>
+<td>设置内存池缓存大小（按字节计）</td>
+<td>默认为16,777,216字节，即16MiB</td>
+<td>2.4.19</td>
+</tr>
+<tr>
+<td>–IgnoreWarning</td>
+<td>忽略警告</td>
+<td>默认只进行警告</td>
+<td>2.4.28</td>
+</tr>
+<tr>
+<td>–JustWarn</td>
+<td>只进行警告</td>
+<td>默认只进行警告</td>
+<td>2.4.28</td>
+</tr>
+<tr>
+<td>–FatalWarning</td>
+<td>将警告作为致命错误</td>
+<td>默认只进行警告</td>
+<td>2.4.28</td>
+</tr>
+<tr>
+<td>–locale=&lt;text&gt;</td>
+<td>指定程序运行的语言环境</td>
+<td>默认为当前系统的语言环境</td>
+<td>2.4.29</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li><code>stamon strip [src] [options...]</code>或<code>stamon -s [src]</code></li>
+</ul>
+<p>该指令用于剥削STVC调试信息，其中src为必要参数，表示待剥削的STVC文件，options为可选参数，他们包括：</p>
+<table>
+<thead>
+<tr>
+<th>参数用法</th>
+<th>功能</th>
+<th>默认值</th>
+<th>支持此参数的最低版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>–IgnoreWarning</td>
+<td>忽略警告</td>
+<td>默认只进行警告</td>
+<td>2.4.28</td>
+</tr>
+<tr>
+<td>–JustWarn</td>
+<td>只进行警告</td>
+<td>默认只进行警告</td>
+<td>2.4.28</td>
+</tr>
+<tr>
+<td>–FatalWarning</td>
+<td>将警告作为致命错误</td>
+<td>默认只进行警告</td>
+<td>2.4.28</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>——摘自<code>工作日志/20240616.md</code>，有改动</p>
+</blockquote>
+<p><br></p>
+<p><a href="发行版使用指南.gitlog.html">查看该文件的提交记录</a></p>
+</body>
+</html>

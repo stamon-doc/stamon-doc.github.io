@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>template-header</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 style="font-family: Arial; color: #00BBFF; text-align:center;">
+<i>Stamon 文档站</i>
+</h1>
+<p><a href="../index.html">回到首页</a> <br> <a
+href="index.html">回到上一级</a> <br></p>
+<h1 id="工作日志">2025/01/27 工作日志</h1>
+<p>本次更新发行了<code>2.4.36</code>.</p>
+<p>本次提交规范了项目的文档，整合并优化了项目的代码，同时修复了大量漏洞。</p>
+<p>在这段时间的开发和思考当中，我结合了原有的开发经验，纠正了目前的开发路线：</p>
+<ul>
+<li>比起分步动作机制，将中间代码重构为STVC-TAC是更为重要的</li>
+<li>应该先重构编译器，再重构虚拟机</li>
+<li>在重构编译器之前，应该先把属性文法编写完毕</li>
+</ul>
+<h3 id="整理项目文档">整理项目文档</h3>
+<p>我将一些工作日志的一些空白的头注释删去了，并且将过时的技术文档明确标记出来。</p>
+<p>与此同时，也更新了抽象语法树文件的编码技术文档。</p>
+<h3
+id="提交了词法编码文件的读取器和写入器">提交了词法编码文件的读取器和写入器</h3>
+<p>它们位于<code>src/action</code>目录下，分别是<code>TokenFileReader.cpp</code>和<code>TokenFileWriter.cpp</code>。</p>
+<p>这两份源码目前仍未经过调试，并且并没有接入到项目主体当中，我会在接下来的更新当中接入它。</p>
+<h3 id="修复了一些漏洞">修复了一些漏洞</h3>
+<p>这些漏洞的具体内容是：</p>
+<ul>
+<li><code>Main.cpp</code>：无法正常处理程序抛出的错误。</li>
+<li><code>Parser.cpp</code>：表达式的语法分析有误。</li>
+<li><code>SFN.cpp</code>：将字符串转为数字时，未检查格式。</li>
+</ul>
+<h3
+id="纠正了一些不致命的错误对部分代码做出了调整">纠正了一些不致命的错误，对部分代码做出了调整</h3>
+<p>这些调整的具体内容是：</p>
+<ul>
+<li><code>Main.cpp</code>：补全了Stamon的帮助信息。</li>
+<li><code>Stamon.hpp</code>：利用依赖库的接口实现了数组拼接。</li>
+<li><code>ExprAst.cpp</code>：规范了枚举代码</li>
+<li><code>DataType.hpp</code>：规范了枚举代码</li>
+</ul>
+<h3 id="让更多错误留在编译期">让更多错误留在编译期</h3>
+<p>在以往的Stamon版本当中，若将<code>continue</code>或<code>break</code>写在循环体外，编译仍然可以通过，只有在虚拟机执行时才会报错。</p>
+<p>为此，我在<code>Parser.cpp</code>当中加入了检查<code>continue</code>和<code>break</code>是否都在循环体中的功能。让更多致命性的错误留在编译期。</p>
+<h3 id="重构虚拟机的计算系统">重构虚拟机的计算系统</h3>
+<p>以往的计算系统的实现代码非常冗余、且在计算时会产生大量的中间对象。</p>
+<p>为此，我建立了<code>TypeCalculator.cpp</code>，将计算系统迁移到了这里（并与<code>AstRunner.cpp</code>对接），同时优化了代码的效率和可读性，确保每一次运算不会产生任何中间对象，即一步到位，直接产生结果对象。</p>
+<p>计算过程中的类型判断和精度转换是个让人头疼的问题，但是我在<code>TypeCalculator.cpp</code>中用一种优雅的方式解决了它。</p>
+<p>在重构计算系统之后，我让<code>2.4.31</code>版本与<code>2.4.36</code>版本运行百万次空循环，又递归计算了第二十项斐波那契数列，在计算期间统计了对象的申请次数。实验结果表明：<strong>重构后的申请次数普遍低于重构前的申请次数的50%</strong>。</p>
+<h3 id="还有更多地方有待优化">还有更多地方有待优化</h3>
+<p><code>ArrayList.hpp</code>的标准C实现以及<code>AstRunner.cpp</code>容易出现内存泄漏。我打算将前者改进成安全的实现，而并不打算处理后者，因为<code>AstRunner.cpp</code>将会随着重构而被弃用。</p>
+<h3 id="接下来要做的事">接下来要做的事</h3>
+<ol type="1">
+<li>优化<code>ArrayList.hpp</code>的标准C实现</li>
+<li>开发Stamon的安装工具</li>
+<li>推进Stamon包管理器的开发</li>
+<li>支持文件处理库</li>
+</ol>
+<p><br></p>
+<p><a href="20250127.gitlog.html">查看该文件的提交记录</a></p>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>template-header</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 style="font-family: Arial; color: #00BBFF; text-align:center;">
+<i>Stamon 文档站</i>
+</h1>
+<p><a href="../index.html">回到首页</a> <br> <a
+href="index.html">回到上一级</a> <br></p>
+<h1 id="工作日志">2024/10/04 工作日志</h1>
+<p>本次修复了项目的一些漏洞，新增了警告系统，正式发行2.4.28。</p>
+<h3 id="修复了一些漏洞">修复了一些漏洞</h3>
+<p>本次修复的漏洞有：</p>
+<ul>
+<li>修复了浮点数在字节码中的存储错误</li>
+<li>防止整数大到溢出而引起的误会</li>
+</ul>
+<h3 id="新增警告系统">新增警告系统</h3>
+<p>这是很多编程语言都应该具备的系统。</p>
+<p>用户可以在<code>build</code>、<code>run</code>、<code>strip</code>指令当中，用参数指定警告程度。</p>
+<p>警告程度分以下几种：</p>
+<ul>
+<li><code>--IgnoreWarning</code>：忽略警告</li>
+<li><code>--JustWarn</code>：只做警告</li>
+<li><code>--FatalWarning</code>：致命警告（将警告也当作致命错误对待）</li>
+</ul>
+<p>用户可以通过指定警告程度来决定代码的安全程度。</p>
+<h3 id="微调了makefile">微调了Makefile</h3>
+<p>开发者可以使用<code>make zip_release</code>来进一步压缩可执行文件（相应的，可执行文件的运行速度也会变慢）。</p>
+<h3 id="接下来要做的事">接下来要做的事</h3>
+<ol type="1">
+<li>支持文件处理库</li>
+<li>支持编译为平面字节码</li>
+<li>编写词法分析的保存功能</li>
+<li>编写AST的O1优化器</li>
+<li>完善标准库</li>
+<li>编写AST的解释器</li>
+</ol>
+<p><br></p>
+<p><a href="20241004.gitlog.html">查看该文件的提交记录</a></p>
+</body>
+</html>

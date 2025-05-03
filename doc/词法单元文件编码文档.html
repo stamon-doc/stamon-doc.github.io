@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>template-header</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 style="font-family: Arial; color: #00BBFF; text-align:center;">
+<i>Stamon 文档站</i>
+</h1>
+<p><a href="../index.html">回到首页</a> <br> <a
+href="index.html">回到上一级</a> <br></p>
+<h1 id="词法单元文件编码文档">词法单元文件编码文档</h1>
+<h3 id="前言">前言</h3>
+<p>词法单元文件里存储着一系列词法单元，一些应用程序可以将自己的语言解析成Stamon的词法单元格式，保存在文件，剩下的语法分析等流程交给Stamon的编译器即可。</p>
+<h3 id="格式">格式</h3>
+<p>词法单元文件的编码格式相对简单。</p>
+<p>一个词法单元文件结构由以下几种规则构成：</p>
+<ul>
+<li>每个词法单元文件的开头必须要有两字节的二进制码：0xABDC，此魔数用于区分于其他文件</li>
+<li>词法单元文件中的数值存储采用大端存储（以Python的大端存储为标准）</li>
+<li>词法单元标识是用于区分词法单元的数字标记，以<code>src/compiler/Lexer.cpp</code>当中的<code>TOKEN_TYPE</code>枚举为准，特殊的，<code>TokenEOL（换行）</code>被规定为-1</li>
+<li>每个词法单元由一字节的<strong>词法单元标识</strong>和若干字节的<strong>词法单元数据</strong>组成</li>
+<li><strong>一些词法单元只有词法单元标识，不含有词法单元数据</strong>（即一些词法单元只占一字节）</li>
+</ul>
+<p>我们来特别看看拥有词法单元数据的词法单元（以及词法单元数据的构成）：</p>
+<ul>
+<li>标识符单元（TokenIden）：其词法单元由<strong>四字节的标识符长度</strong>和<strong>字节长度为标识符长度的标识符内容</strong>组成。</li>
+<li>整数单元（TokenInt）：其词法单元由<strong>四字节的整数数值</strong>组成。</li>
+<li>双精度浮点数单元（TokenDouble）：其词法单元由<strong>八字节的浮点数值</strong>组成</li>
+<li>字符串单元（TokenString）：其词法单元由<strong>四字节的字符长度</strong>和<strong>字节长度为字符串长度的字符串内容</strong>组成。</li>
+</ul>
+<p><br></p>
+<p><a
+href="词法单元文件编码文档.gitlog.html">查看该文件的提交记录</a></p>
+</body>
+</html>

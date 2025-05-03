@@ -1,0 +1,33 @@
+Stamon 文档站
+============
+
+欢迎来到Stamon文档站（纯文本版首页）。
+本网站的官方URL：https://stamon-doc.github.io/
+
+网站导航
+-------
+
+技术文档集：https://stamon-doc.github.io/doc/
+工作日志集：https://stamon-doc.github.io/log/
+
+相关链接
+-------
+
+Stamon的Github仓库：https://github.com/CLimber-Rong/stamon/
+该网站的Github仓库：https://github.com/stamon-doc/stamon-doc.github.io/
+Stamon的资源站：https://stamon-rsc.github.io/
+在线体验Stamon：https://stamon-playground.github.io/
+CLimber-Rong发布的其他Stamon周边项目：https://github.com/CLimber-Rong/
+CLimber-Rong发布的有关Stamon的其他内容：https://CLimber-Rong.github.io/
+
+创作声明
+-------
+
+本网站由CLimber-Rong搭建。
+CLimber-Rong的Github主页：https://github.com/CLimber-Rong/
+CLimber-Rong的个人网站：https://CLimber-Rong.github.io/
+
+对于网站中存放的文档，若非特别注明，则皆为CLimber-Rong原创。
+网站中存放的文档皆遵循CC-BY-NC-SA 4.0协议（署名—非商业性使用—相同方式共享 4.0 协议）。
+CC-BY-NC-SA 4.0协议链接为 https://creativecommons.org/licenses/by-nc-sa/4.0/ 。
+你也可以在 https://stamon-doc.github.io/CC-BY-NC-SA4.0.txt 中快速阅览该协议的法律条文。
