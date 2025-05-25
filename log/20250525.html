@@ -174,62 +174,29 @@
 </h1>
 <p><a href="../index.html">回到首页</a> <br> <a
 href="index.html">回到上一级</a> <br></p>
-<p>commit f82b0694a91f1cadb6ea30b378d9cad283fc7477 Author: 瞿相荣 <a
-href="mailto:woshiquxiangrong@outlook.com"
-class="email">woshiquxiangrong@outlook.com</a> Date: Sun May 25 16:23:18
-2025 +0800</p>
-<pre><code>fix(ast-ir): fix the name of ast-ir
-
-please refer to the file change history for details</code></pre>
-<p>commit fd237a564f8337960f4ca5556f8af8797de8a43a Author: 瞿相荣 <a
-href="mailto:woshiquxiangrong@outlook.com"
-class="email">woshiquxiangrong@outlook.com</a> Date: Wed Apr 2 22:38:07
-2025 +0800</p>
-<pre><code>fix(*): fix a lot of bugs
-
-1. fix a log of memory-leak-bugs
-2. change some documents
-please refer to the work log for details</code></pre>
-<p>commit 1283b1727e468ca257b6318cf2a2575cb1aa9dd6 Author: 瞿相荣 <a
-href="mailto:woshiquxiangrong@outlook.com"
-class="email">woshiquxiangrong@outlook.com</a> Date: Tue Mar 25 23:29:56
-2025 +0800</p>
-<pre><code>docs(*): update documents
-
-please refer to the file change history for details</code></pre>
-<p>commit e01d6962ce55c543fe62201a65b3dbc5cdacf3b5 Author: 瞿相荣 <a
-href="mailto:woshiquxiangrong@outlook.com"
-class="email">woshiquxiangrong@outlook.com</a> Date: Tue Mar 18 18:36:17
-2025 +0800</p>
-<pre><code>docs(*): sort the documents
-
-please refer to the work log for details</code></pre>
-<p>commit f668ed20e64ec061a9ee3bf34038a82ace88b861 Author: 瞿相荣 <a
-href="mailto:woshiquxiangrong@outlook.com"
-class="email">woshiquxiangrong@outlook.com</a> Date: Sun Feb 23 19:05:45
-2025 +0800</p>
-<pre><code>refactor(include): refactor dependency libraries
-
-1. update some documents
-2. refactor dependency libraries
-please refer to the work log for details</code></pre>
-<p>commit 412e81e6617569ac940e786aee6b9df81a1b5d81 Author: 瞿相荣 <a
-href="mailto:woshiquxiangrong@outlook.com"
-class="email">woshiquxiangrong@outlook.com</a> Date: Thu Jun 27 17:25:22
-2024 +0800</p>
-<pre><code>fix(*): fix some bugs
-
-1. fix the bugs of Makefile
-2. update sfn
-3. commit the specification of stvc-tac
-
-please refer to the work log for details</code></pre>
-<p>commit 92c17e7bb3fdba611b3cb1d23a4bf87f89b638f8 Author: 瞿相荣 <a
-href="mailto:woshiquxiangrong@outlook.com"
-class="email">woshiquxiangrong@outlook.com</a> Date: Wed May 15 19:29:34
-2024 +0800</p>
-<pre><code>feat(*): complete stamon 2.2.8
-
-please refer to the work log for details</code></pre>
+<h1 id="工作日志">2025/05/25 工作日志</h1>
+<p>本次更新的内部版本为<code>2.4.46</code>。 本次更新不会发行新版本。
+本次更新全面整理了代码，并提交了新功能。</p>
+<h3 id="整理并修复了项目的细节与风格">整理并修复了项目的细节与风格</h3>
+<p>具体的措施有： 1. 将AstIR改为AstIr，AstIRConverter改为AstIrConverter
+2. 将AstIrReader和AstIrWriter迁移至action命名空间 3. 规范化了文件注释头
+4. 规范化了文件内宏的定义和删除 5.
+将一些重复的else-if代码块重写成更直观的switch代码块 6.
+修改了版本号的文件编码格式，本次更新使AstIr编码<strong>非兼容性</strong>更新
+7. 将Writer和Reader的接口统一化</p>
+<h3 id="提升了项目的安全性">提升了项目的安全性</h3>
+<p>具体的措施有：</p>
+<ol start="5" type="1">
+<li>规范化了文件写入的大小端</li>
+<li>为TokenFileWriter提供了更细致的安全处理</li>
+<li>修复了BinaryReader获取大小的错误</li>
+</ol>
+<h3 id="更新了文档">更新了文档</h3>
+<p>完善了以往的文档，并发布了<code>AST-IR编码文件文档</code>。</p>
+<h3 id="提交了抽象语法树文件处理功能">提交了抽象语法树文件处理功能</h3>
+<p>提交了<code>AstFileReader.cpp</code>和<code>AstFileWriter.cpp</code>。</p>
+<p>目前为止，AstFileReader、AstFileWriter、TokenFileReader、TokenFileWriter尚未经过对接和调试，我将会在接下来的几次更新中整理test目录，并提交新的测试代码。</p>
+<p><br></p>
+<p><a href="20250525.gitlog.html">查看该文件的提交记录</a></p>
 </body>
 </html>

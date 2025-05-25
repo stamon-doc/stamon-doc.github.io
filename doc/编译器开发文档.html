@@ -252,10 +252,10 @@ href="index.html">回到上一级</a> <br></p>
 <li>这里需要补充的是：<code>src</code>成员的类型为<code>ArrayList&lt;SourceSyntax&gt;</code>，其中，<code>SourceSyntax</code>定义于<code>Parser.cpp</code>。<code>SourceSyntax</code>由<code>ast::AstNode* program（单个文件的语法树）</code>和<code>String filename（文件名）</code>构成。</li>
 </ul>
 <h3
-id="编写了ast与astir之间的互转工具">编写了Ast与AstIR之间的互转工具</h3>
+id="编写了ast与astir之间的互转工具">编写了Ast与AstIr之间的互转工具</h3>
 <p>这些工具位于<code>src/ir</code>目录下</p>
-<p><code>AstIR</code>是一种中间代码表示形式，可以将Ast展开为一个数组。这样就可以把Ast转为AstIR，并将AstIR以字节码的方式写入。读取时也只需要读取AstIR，并重组成Ast即可。</p>
-<p>AstIR的格式和HTML的格式类似：由逻辑单元、数据单元和结束单元组成。一棵Ast可以通过深度优先遍历转为AstIR。</p>
+<p><code>AstIr</code>是一种中间代码表示形式，可以将Ast展开为一个数组。这样就可以把Ast转为AstIr，并将AstIr以字节码的方式写入。读取时也只需要读取AstIr，并重组成Ast即可。</p>
+<p>AstIr的格式和HTML的格式类似：由逻辑单元、数据单元和结束单元组成。一棵Ast可以通过深度优先遍历转为AstIr。</p>
 <p>这样的描述也许会较为拗口，我们来看一个示例：</p>
 <blockquote>
 <p>考虑以下Ast:</p>
@@ -264,7 +264,7 @@ id="编写了ast与astir之间的互转工具">编写了Ast与AstIR之间的互�
 |-Sub
 |--b
 |--1</code></pre>
-<p>该Ast可以转为以下AstIR：</p>
+<p>该Ast可以转为以下AstIr：</p>
 <pre><code>&lt;Add&gt;         //此为逻辑单元，以此类推
 &lt;data val=a&gt;  //此为数据单元，以此类推
 &lt;Sub&gt;
@@ -272,13 +272,13 @@ id="编写了ast与astir之间的互转工具">编写了Ast与AstIR之间的互�
 &lt;data val=1&gt;
 &lt;end&gt;         //此为结束单元，以此类推
 &lt;end&gt;</code></pre>
-<p>这段AstIR和上面的Ast本质上是等价的。这样只需将Ast转为AstIR，就能获得一系列单元，方便存入文件。</p>
+<p>这段AstIr和上面的Ast本质上是等价的。这样只需将Ast转为AstIr，就能获得一系列单元，方便存入文件。</p>
 </blockquote>
 <p>逻辑单元本质上就是Ast节点的非叶子节点，数据单元本质上就是Ast节点的叶子节点。</p>
-<p>我们先来讲一讲<code>AstIR.cpp</code>。</p>
-<p>AstIR单元的实现是：</p>
+<p>我们先来讲一讲<code>AstIr.cpp</code>。</p>
+<p>AstIr单元的实现是：</p>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> AstIR <span class="op">{</span></span>
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> AstIr <span class="op">{</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span><span class="op">:</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> type<span class="op">;</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="co">/*</span></span>
@@ -296,12 +296,12 @@ class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="#c
 <blockquote>
 <p><code>Ast</code>和<code>Running-Ast</code>的区别就在于：Running-Ast的叶子节点皆为<code>AstLeaf</code>，而Ast非然。</p>
 </blockquote>
-<p>AstIRConverter类用于将Ast数据生成为AstIR（同时兼任着AstIR转Running-Ast的任务），它值得关注的接口有：</p>
+<p>AstIrConverter类用于将Ast数据生成为AstIr（同时兼任着AstIr转Running-Ast的任务），它值得关注的接口有：</p>
 <ul>
-<li><code>ArrayList&lt;AstIR&gt; gen(AstNode* program)</code>：迭代遍历语法树，编译成AstIR</li>
-<li><code>AstNode* read(ArrayList&lt;AstIR&gt; ir)</code>：AstIR转Ast，如果ir不正确，程序会运行时错误，所以请在运行该函数前检查ir</li>
+<li><code>ArrayList&lt;AstIr&gt; gen(AstNode* program)</code>：迭代遍历语法树，编译成AstIr</li>
+<li><code>AstNode* read(ArrayList&lt;AstIr&gt; ir)</code>：AstIr转Ast，如果ir不正确，程序会运行时错误，所以请在运行该函数前检查ir</li>
 </ul>
-<p>至此，Stamon的源码将会被转为AstIR，接下来则是写入AstIR至文件了，这一部分的内容位于<code>src/Stamon.hpp</code>，暂时按下不表，在介绍完解释器后会解释。</p>
+<p>至此，Stamon的源码将会被转为AstIr，接下来则是写入AstIr至文件了，这一部分的内容位于<code>src/Stamon.hpp</code>，暂时按下不表，在介绍完解释器后会解释。</p>
 <h3 id="完成了sfn机制">完成了SFN机制</h3>
 <p>SFN机制在本项目原所在仓库中有提及，这里再次摘抄：</p>
 <blockquote>

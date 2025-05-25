@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>stamon-doc</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 style="font-family: Arial; color: #00BBFF; text-align:center;">
+<i>Stamon 文档站</i>
+</h1>
+<p><a href="../index.html">回到首页</a> <br> <a
+href="index.html">回到上一级</a> <br></p>
+<h1 id="ast-ir编码文件文档">AST-IR编码文件文档</h1>
+<blockquote>
+<p>注意：<code>AST-IR规范</code>相对于<code>STVC-TAC规范</code>是一种“更古老”的编码规范，我们建议编译器和虚拟机采用更先进的<code>STVC-TAC规范</code>。但<code>AST-IR</code>仍然是一种稳定，方便的格式。</p>
+</blockquote>
+<h3 id="前言">前言</h3>
+<p>AST-IR（以下简称<code>AstIr</code>）是一种将抽象语法树（以下简称<code>Ast</code>）转为迭代表示方式的编码结构。</p>
+<p>基于AstIr的编译器的基本运作原理是：在编译生成Ast后，将Ast转为AstIr的二进制编码文件，最后交给虚拟机运行，虚拟机将AstIr复原成<code>Running-Ast</code>数据结构（这种数据结构与编译器生成的Ast略有差别），然后递归执行。</p>
+<p>有关<code>Running-Ast</code>的解释，我引用<code>编译器开发文档</code>的解释：</p>
+<blockquote>
+<p><code>Ast</code>和<code>Running-Ast</code>的区别就在于：Running-Ast的叶子节点皆为<code>AstLeaf</code>，而Ast非然。</p>
+</blockquote>
+<p>不难见得，Running-Ast是为了适应AstIr而诞生的结构。</p>
+<p>有关AstIr的结构示例，我已经在<code>编译器开发文档</code>中提及，因此我将其解释放到了文末的“AST-IR格式附注”中。</p>
+<h3 id="格式">格式</h3>
+<p>一个AstIr文件结构由以下几种规则构成：</p>
+<ul>
+<li>每个词法单元文件的开头必须要有两字节的二进制码：0xABDB，此魔数用于区分于其他文件</li>
+<li>在0xABDB后面，必须要跟着三字节的版本号，对于版本号X.Y.Z，则必须依次跟着X，Y，Z的数值，各为一字节</li>
+<li>在三字节的版本号后面，需要跟着常量表（有关常量表的叙述在“STVC-TAC二进制编码规范”中有提及，因此我将其解释放到了文末的“常量表附注”中）</li>
+<li>常量表后面，需要跟着若干个AstIr的单元，如果有指定，还需在单元中穿插文件调试信息</li>
+<li>无论是逻辑单元，数据单元还是结束单元，每个单元的二进制长度都是八字节，前四字节是单元的类型（以<code>Ast.hpp</code>的<code>_AstType</code>为准，特别的，结束单元的类型是-1）；后四字节是单元的数据，如果该单元是逻辑单元或结束单元，则后四字节默认为0，如果该单元是数据单元，则后四字节为数据的二进制存储（采用大端存储，以Python的大端存储为标准），数据单元的种类以文末的“数据单元附表”为准。</li>
+<li>如果指定需要写入调试信息，则还需要遵循以下规则</li>
+<li><ul>
+<li>在写入第一个单元之前，先写入该单元所在的文件和行号</li>
+</ul></li>
+<li><ul>
+<li>若一个单元所在的文件与上一个单元不一样，则需要写入当前单元所在文件</li>
+</ul></li>
+<li><ul>
+<li>若一个单元所在的行号与上一个单元不一样，则需要写入当前单元所在行号</li>
+</ul></li>
+<li><ul>
+<li>写入当前单元所在行号，需要先写入四字节的数值-2，然后输出四字节的行号</li>
+</ul></li>
+<li><ul>
+<li>写入当前单元所在文件，需要先写入四字节的数值-3，接着写入四字节的长度（文件名字节长度），最后逐字节地写入文件名</li>
+</ul></li>
+</ul>
+<h3 id="数据单元附表">数据单元附表</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">单元类型</th>
+<th style="text-align: left;">对应的数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">ast::AstAnonClass</td>
+<td style="text-align: left;">isHaveFather</td>
+</tr>
+<tr>
+<td style="text-align: left;">ast::AstExpression</td>
+<td style="text-align: left;">ass_type</td>
+</tr>
+<tr>
+<td style="text-align: left;">ast::AstLeftPostfix</td>
+<td style="text-align: left;">getPostfixType()</td>
+</tr>
+<tr>
+<td style="text-align: left;">ast::AstBinary</td>
+<td style="text-align: left;">getOperatorType()</td>
+</tr>
+<tr>
+<td style="text-align: left;">ast::AstUnary</td>
+<td style="text-align: left;">getOperatorType()</td>
+</tr>
+<tr>
+<td style="text-align: left;">ast::AstPostfix</td>
+<td style="text-align: left;">getPostfixType()</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ast-ir格式附注">AST-IR格式附注</h3>
+<p>AstIr的格式和HTML的格式类似：由逻辑单元、数据单元和结束单元组成。一棵Ast可以通过深度优先遍历转为AstIr。</p>
+<p>这样的描述也许会较为拗口，我们来看一个示例：</p>
+<blockquote>
+<p>考虑以下Ast:</p>
+<pre><code>Add
+|-a
+|-Sub
+|--b
+|--1</code></pre>
+<p>该Ast可以转为以下AstIr：</p>
+<pre><code>&lt;Add&gt;         //此为逻辑单元，以此类推
+&lt;data val=a&gt;  //此为数据单元，以此类推
+&lt;Sub&gt;
+&lt;data val=b&gt;
+&lt;data val=1&gt;
+&lt;end&gt;         //此为结束单元，以此类推
+&lt;end&gt;</code></pre>
+<p>这段AstIr和上面的Ast本质上是等价的。这样只需将Ast转为AstIr，就能获得一系列单元，方便存入文件。</p>
+</blockquote>
+<p>逻辑单元本质上就是Ast节点的非叶子节点，数据单元本质上就是Ast节点的叶子节点。</p>
+<blockquote>
+<p>摘自<code>编译器开发文档</code>，2025年4月26日</p>
+</blockquote>
+<h3 id="常量表附注">常量表附注</h3>
+<p>一个常量表由常量表长度（占4字节）和若干个常量组成，其中常量又由常量类型（占1字节）和常量值组成：</p>
+<p>其中每种类型的编码格式如下：</p>
+<ul>
+<li>整数类型：占4字节，即数值</li>
+<li>单精度浮点类型：占4字节，即数值</li>
+<li>双精度浮点类型：占8字节，即数值</li>
+<li>字符串类型：占4+len字节，其中前4字节记录字符串长度（即l，长度按字节计），后len字节为字符串值</li>
+<li>标识符类型：占4+len字节，其中前4字节记录标识符长度（即len，长度按字节计），后len字节为标识符名</li>
+</ul>
+<p>一个常量表下标默认为4字节。</p>
+<blockquote>
+<p>摘自<code>STVC-TAC二进制编码规范</code>，2025年4月26日</p>
+</blockquote>
+<p><br></p>
+<p><a href="AST-IR编码文件文档.gitlog.html">查看该文件的提交记录</a></p>
+</body>
+</html>

@@ -215,7 +215,7 @@ href="index.html">回到上一级</a> <br></p>
 <li>LineReaderItem：行阅读器物品</li>
 <li>TokenReaderItem：词法单元阅读器物品</li>
 <li>AstItem：语法树物品</li>
-<li>AstIRItem：AstIR物品</li>
+<li>AstIrItem：AstIr物品</li>
 <li>AstRunnerItem：AstRunner运行所需的物品（包括常量表、Running-Ast等）</li>
 <li>BufferItem：内存块物品（用于在内存中存储二进制数据）</li>
 </ul>
@@ -287,22 +287,22 @@ style="text-align: left;">接受TokenReaderItem和用户提供的物品（文件
 <td style="text-align: left;">AstItem</td>
 </tr>
 <tr>
-<td style="text-align: left;">AstIRTool</td>
+<td style="text-align: left;">AstIrTool</td>
 <td style="text-align: left;">将Ast转为Ast-IR</td>
 <td style="text-align: left;">接受AstItem以及用户加入的物品</td>
-<td style="text-align: left;">AstIRItem</td>
+<td style="text-align: left;">AstIrItem</td>
 </tr>
 <tr>
 <td style="text-align: left;">AstIrWriterTool</td>
 <td style="text-align: left;">将Ast-IR写入二进制文件</td>
 <td
-style="text-align: left;">接受AstIRItem和用户加入的物品（文件名）</td>
+style="text-align: left;">接受AstIrItem和用户加入的物品（文件名）</td>
 <td style="text-align: left;">NoneItem</td>
 </tr>
 <tr>
 <td style="text-align: left;">STVCBufferWriterTool</td>
 <td style="text-align: left;">将Ast-IR以二进制格式写入内存</td>
-<td style="text-align: left;">接受AstIRItem以及用户加入的物品</td>
+<td style="text-align: left;">接受AstIrItem以及用户加入的物品</td>
 <td style="text-align: left;">BufferItem</td>
 </tr>
 <tr>
