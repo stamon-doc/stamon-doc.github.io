@@ -108,7 +108,7 @@ if __name__=='__main__':
     del_dir('workspace')
     
     print('-----PUSH-----')
-    opt = input('Everything has done, do you wanna push it to github? (Y/N)')
+    opt = input('Everything has been done, do you wanna push it to github? (Y/N)')
     
     if opt=='Y':
         os.system('git add .')
