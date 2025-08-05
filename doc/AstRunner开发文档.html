@@ -246,13 +246,13 @@ href="index.html">回到上一级</a> <br></p>
 <p>虚拟机的运行原理为：将二进制文件读取为AstIr，交给AstIrConverter类解析为Running-Ast，最后交给<code>vm/AstRunner.cpp</code>递归运行。</p>
 <p>我们规定：Stamon编译后的二进制文件为<strong>STVC文件</strong>，文件后缀为<code>.stvc</code></p>
 <p>我们来逐步讲解。</p>
-<p>首先是二进制文件读取为AstIr，这部分的实现位于<code>src/vm/AstIrReader.cpp</code>，AstIrReader类的主要接口有：</p>
+<p>首先是二进制文件读取为AstIr，这部分的实现位于<code>src/action/AstIrReader.cpp</code>，AstIrReader类的主要接口有：</p>
 <ul>
-<li><code>AstIrReader(char* vmcode, int code_size, STMException* e)</code>：构造函数，vmcode为字节码在内存中的地址，code_size指字节码的大小，e为异常类</li>
-<li><code>bool ReadHeader()</code>：读取字节码头，读取失败则抛出异常并返回false，否则返回true</li>
+<li><code>AstIrReader(STMException *e, String filename)</code>：构造函数，filename为文件名</li>
+<li><code>bool readHeader()</code>：读取字节码头，读取失败则抛出异常并返回false，否则返回true</li>
 <li><code>ArrayList&lt;AstIr&gt; ReadIR()</code>：读取AstIr，返回由AstIr组成的ArrayList</li>
 </ul>
-<p>想要完整的读取一个STVC文件，应该要先创建一个AstIrReader对象，然后先调用<code>ReadHeader</code>读取文件头信息，接着调用<code>ReadIR</code>来读取AstIr。调用这两个函数之后要分别检查是否有异常抛出。</p>
+<p>想要完整的读取一个STVC文件，应该要先创建一个AstIrReader对象，然后先调用<code>readHeader</code>读取文件头信息，接着调用<code>readIR</code>来读取AstIr。调用这两个函数之后要分别检查是否有异常抛出。</p>
 <p>接着是让AstIrConverter类解析为Running-Ast，这一部分在<strong>写了Ast与AstIr之间的互转工具</strong>部分里已经详细提及过了，故不再赘述。</p>
 <p>最后是交给<code>vm/AstRunner.cpp</code>递归运行，<code>AstRunner</code>类采用了和语法分析器类似的结构，下面我们来看看重点的数据接口及接口：</p>
 <p>AstRunner在递归执行Ast时的返回值为<code>RetStatus</code>类。RetStatus，全称<em>Return-Status（返回状态）</em>，用于指示当前代码运行状况，我们来看看RetStatus的定义：</p>
@@ -261,17 +261,16 @@ class="sourceCode c++"><code class="sourceCode cpp"><span id="cb1-1"><a href="#c
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        <span class="co">//这个类用于运行时</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span><span class="op">:</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> status<span class="op">;</span> <span class="co">//状态码</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        EasySmartPtr<span class="op">&lt;</span>Variable<span class="op">&gt;</span> retval<span class="op">;</span>  <span class="co">//返回值（Return-Value），无返回值时为NULL</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        RetStatus<span class="op">()</span> <span class="op">{}</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        RetStatus<span class="op">(</span><span class="at">const</span> RetStatus<span class="op">&amp;</span> right<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        VariablePtr retval<span class="op">;</span> <span class="co">//返回值（Return-Value），无返回值时为NULL</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        RetStatus<span class="op">()</span> <span class="op">:</span> retval<span class="op">(</span>NullVariablePtr<span class="op">())</span> <span class="op">{}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        RetStatus<span class="op">(</span><span class="at">const</span> RetStatus<span class="op">&amp;</span> right<span class="op">)</span> <span class="op">:</span> retval<span class="op">(</span>right<span class="op">.</span>retval<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            status <span class="op">=</span> right<span class="op">.</span>status<span class="op">;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            retval <span class="op">=</span> right<span class="op">.</span>retval<span class="op">;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        RetStatus<span class="op">(</span><span class="dt">int</span> status_code<span class="op">,</span> EasySmartPtr<span class="op">&lt;</span>Variable<span class="op">&gt;</span> retvalue<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        RetStatus<span class="op">(</span><span class="dt">int</span> status_code<span class="op">,</span> VariablePtr retvalue<span class="op">)</span> </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> retval<span class="op">(</span>retvalue<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            status <span class="op">=</span> status_code<span class="op">;</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            retval <span class="op">=</span> retvalue<span class="op">;</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span></code></pre></div>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
 <p>其中的<code>int status</code>一行用于存储状态码，状态码有以下几类：</p>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode c++"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> RET_STATUS_CODE <span class="op">{</span>  <span class="co">//返回的状态码集合</span></span>
@@ -282,34 +281,13 @@ class="sourceCode c++"><code class="sourceCode cpp"><span id="cb2-1"><a href="#c
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    RetStatusRet        <span class="co">//函数返回（Return）</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
 <p>AstRunner的主要接口有：</p>
-<ol type="1">
-<li>抛出运行时异常，这些异常分别是：</li>
-</ol>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ThrowTypeError<span class="op">(</span><span class="dt">int</span> type<span class="op">);</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ThrowPostfixError<span class="op">();</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ThrowIndexError<span class="op">();</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ThrowConstantsError<span class="op">();</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ThrowDivZeroError<span class="op">();</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ThrowBreakError<span class="op">();</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ThrowContinueError<span class="op">();</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ThrowArgumentsError<span class="op">(</span><span class="dt">int</span> form_args<span class="op">,</span> <span class="dt">int</span> actual_args<span class="op">);</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ThrowReturnError<span class="op">();</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ThrowUnknownOperatorError<span class="op">();</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ThrowUnknownMemberError<span class="op">(</span><span class="dt">int</span> id<span class="op">);</span></span></code></pre></div>
-<ol start="2" type="1">
-<li>利用execute方法执行Running-Ast，它的函数原型是：</li>
-</ol>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode c++"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>RetStatus execute<span class="op">(</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    AstNode<span class="op">*</span> main_node<span class="op">,</span> <span class="dt">bool</span> isGC<span class="op">,</span> <span class="dt">int</span> vm_mem_limit<span class="op">,</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    ArrayList<span class="op">&lt;</span>DataType<span class="op">*&gt;</span> tableConst<span class="op">,</span> ArrayList<span class="op">&lt;</span>String<span class="op">&gt;</span> args<span class="op">,</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    STMException<span class="op">*</span> e</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">);</span></span></code></pre></div>
-<p>虚拟机在执行过程中会向ObjectManager申请对象，来实现GC机制。</p>
-<blockquote>
-<p>——摘自<code>工作日志/20240512.md</code></p>
-</blockquote>
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>RetStatus execute<span class="op">(</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    AstNode<span class="op">*</span> main_node<span class="op">,</span> <span class="dt">bool</span> isGC<span class="op">,</span> <span class="dt">int</span> vm_mem_limit<span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    ArrayList<span class="op">&lt;</span>DataType<span class="op">*&gt;</span> tableConst<span class="op">,</span> ArrayList<span class="op">&lt;</span>String<span class="op">&gt;</span> args<span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    STMException<span class="op">*</span> e</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">);</span></span></code></pre></div>
+<p>虚拟机在执行过程中会向ObjectManager申请对象，来实现GC机制。详见<code>对象管理器文档.md</code></p>
 <p><br></p>
 <p><a href="AstRunner开发文档.gitlog.html">查看该文件的提交记录</a></p>
 </body>

@@ -186,7 +186,7 @@ href="index.html">回到上一级</a> <br></p>
 <p><code>Ast</code>和<code>Running-Ast</code>的区别就在于：Running-Ast的叶子节点皆为<code>AstLeaf</code>，而Ast非然。</p>
 </blockquote>
 <p>不难见得，Running-Ast是为了适应AstIr而诞生的结构。</p>
-<p>有关AstIr的结构示例，我已经在<code>编译器开发文档</code>中提及，因此我将其解释放到了文末的“AST-IR格式附注”中。</p>
+<p>对于AstIr的结构解释和示例，我将其放到了文末的“AST-IR格式附注”中。</p>
 <h3 id="格式">格式</h3>
 <p>一个AstIr文件结构由以下几种规则构成：</p>
 <ul>
@@ -264,9 +264,6 @@ href="index.html">回到上一级</a> <br></p>
 <p>这段AstIr和上面的Ast本质上是等价的。这样只需将Ast转为AstIr，就能获得一系列单元，方便存入文件。</p>
 </blockquote>
 <p>逻辑单元本质上就是Ast节点的非叶子节点，数据单元本质上就是Ast节点的叶子节点。</p>
-<blockquote>
-<p>摘自<code>编译器开发文档</code>，2025年4月26日</p>
-</blockquote>
 <h3 id="常量表附注">常量表附注</h3>
 <p>一个常量表由常量表长度（占4字节）和若干个常量组成，其中常量又由常量类型（占1字节）和常量值组成：</p>
 <p>其中每种类型的编码格式如下：</p>

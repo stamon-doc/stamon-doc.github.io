@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>stamon-doc</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<h1 style="font-family: Arial; color: #00BBFF; text-align:center;">
+<i>Stamon 文档站</i>
+</h1>
+<p><a href="../index.html">回到首页</a> <br> <a
+href="index.html">回到上一级</a> <br></p>
+<h1 id="sfn机制文档">SFN机制文档</h1>
+<h3 id="定义">定义</h3>
+<p>SFN，全称Stamon For
+Native。是Stamon的一个调用外部功能的机制。你可以用它与解释器交互。</p>
+<p>SFN的源码位于<code>src/sfn/SFN.cpp</code>。</p>
+<p>SFN在Stamon中的语法规定为<code>sfn port, arg;</code>，其中port必须为字符串，代表着端口号，使用不同的端口号会调用不同的本地库，arg则是参数，具体类型由本地库的要求而定。在调用SFN后，arg可能会变为调用后的结果。</p>
+<h3 id="核心接口">核心接口</h3>
+<p>SFN类的主要接口有：</p>
+<ul>
+<li><code>SFN(STMException *e, vm::ObjectManager *objman)</code>：构造函数objman为当前运行时的ObjectManager对象。</li>
+<li><code>void call(String port, datatype::Variable *arg)</code>：根据端口号调用本地库。</li>
+</ul>
+<h3 id="自定义外部功能">自定义外部功能</h3>
+<p>我们以实现一个输出功能为例。</p>
+<h5 id="定义外部函数">定义外部函数</h5>
+<p>想要自定义外部功能，需要先编写一个参数和返回值都符合规范的，位于全局作用域上的外部函数。由于参数列表过长，因此提供了如下宏：</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define SFN_PARA_LIST </span><span class="op">\</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">    </span>stamon<span class="op">::</span>sfn<span class="op">::</span>SFN<span class="pp"> </span><span class="op">&amp;</span>sfn<span class="op">,</span><span class="pp"> </span>stamon<span class="op">::</span>datatype<span class="op">::</span>Variable<span class="pp"> </span><span class="op">*</span>arg<span class="op">,</span><span class="pp"> </span><span class="op">\</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">            </span>stamon<span class="op">::</span>vm<span class="op">::</span>ObjectManager<span class="pp"> </span><span class="op">*</span>manager</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">// 用这个宏（SFN Parameter List）可以快速声明SFN函数的参数列表</span></span></code></pre></div>
+<p>其中，sfn是调用此外部函数的sfn类，arg是参数变量，manager是对象管理器。</p>
+<p>外部函数的返回值类型必须为<code>void</code>。因此，该输出功能的函数原型是：</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sfn_print<span class="op">(</span>SFN_PARA_LIST<span class="op">);</span></span></code></pre></div>
+<p>该定义应作为前置定义放在<code>SFN</code>类的实现之前</p>
+<h5 id="实现外部函数">实现外部函数</h5>
+<p>外部函数可以使用依赖库上的函数，对于移植在平台上的开发者而言，也可以引入更多平台特有的函数进行操作。外部函数应该使用<code>stamon::exception::sfn::SFNError</code>作为异常生成函数，开发者也可以引入更多细化的异常生成函数。</p>
+<p><code>sfn_print</code>的实际实现如下：</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sfn_print<span class="op">(</span>SFN_PARA_LIST<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    STMException <span class="op">*</span>ex <span class="op">=</span> sfn<span class="op">.</span>ex<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    stamon<span class="op">::</span>datatype<span class="op">::</span>DataType <span class="op">*</span>val <span class="op">=</span> arg<span class="op">-&gt;</span>data<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>val<span class="op">-&gt;</span>getType<span class="op">()</span> <span class="op">!=</span> stamon<span class="op">::</span>datatype<span class="op">::</span>StringTypeID<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        THROW<span class="op">(</span>stamon<span class="op">::</span>exception<span class="op">::</span>sfn<span class="op">::</span>SFNError<span class="op">(</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;sfn_print()&quot;</span><span class="op">,</span> <span class="st">&quot;invalid type&quot;</span><span class="op">));</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    platform_print<span class="op">(((</span>stamon<span class="op">::</span>datatype<span class="op">::</span>StringType <span class="op">*)</span> val<span class="op">)-&gt;</span>getVal<span class="op">());</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>该实现应该放在<code>SFN</code>类的实现之后</p>
+<h5 id="绑定外部函数">绑定外部函数</h5>
+<p>实现完外部函数后，就要将其绑定在SFN上，以便调用时能找到并调用该外部函数。外部函数需要绑定在SFN的构造函数中。SFN的构造函数代码以如下为例：</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>SFN<span class="op">(</span>STMException <span class="op">*</span>e<span class="op">,</span> vm<span class="op">::</span>ObjectManager <span class="op">*</span>objman<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    ex <span class="op">=</span> e<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    manager <span class="op">=</span> objman<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 在这里将库函数按接口号填入</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    sfn_functions<span class="op">.</span>put<span class="op">(</span>String<span class="op">(</span><span class="st">&quot;print&quot;</span><span class="op">),</span> sfn_print<span class="op">);</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    sfn_functions<span class="op">.</span>put<span class="op">(</span>String<span class="op">(</span><span class="st">&quot;int&quot;</span><span class="op">),</span> sfn_int<span class="op">);</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    sfn_functions<span class="op">.</span>put<span class="op">(</span>String<span class="op">(</span><span class="st">&quot;str&quot;</span><span class="op">),</span> sfn_str<span class="op">);</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">//...略...</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><code>sfn_functions</code>是一个<code>StringMap</code>，存储的值类型是符合外部函数原型的函数指针。在构造函数中加入利用<code>sfn_functions.put</code>来指定端口号及其对应的外部函数</p>
+<p><br></p>
+<p><a href="SFN机制文档.gitlog.html">查看该文件的提交记录</a></p>
+</body>
+</html>

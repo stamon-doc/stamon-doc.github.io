@@ -174,7 +174,10 @@
 </h1>
 <p><a href="../index.html">回到首页</a> <br> <a
 href="index.html">回到上一级</a> <br></p>
-<h1 id="代码速览指南第一版">代码速览指南（第一版）</h1>
+<h1 id="代码速览指南第二版">代码速览指南（第二版）</h1>
+<h3 id="第二版前言">第二版前言</h3>
+<p>去除了一些情绪化的描述，使该文档更加术语化。</p>
+<p>——2025年7月29日</p>
 <h3 id="第一版前言">第一版前言</h3>
 <p>本指南将于其发布时起指导作用，直到下一版发布时将会过时。
 本指南旨在让开发者在5分钟内快速了解项目架构以及阅读顺序。</p>
@@ -183,22 +186,15 @@ href="index.html">回到上一级</a> <br></p>
 <ul>
 <li>文件后缀</li>
 </ul>
-<p>很多人反映源码的后缀名很奇怪。</p>
 <p>本项目中，依赖库的源码后缀统一为<code>.h</code>或<code>.hpp</code>格式；主体实现部分中，每一个源码子目录由一个<code>.hpp</code>文件来统领其他的<code>.cpp</code>文件（要求开发者只需包含此<code>.hpp</code>文件即可调用该子目录下的所有代码）。</p>
 <p><code>.hpp</code>和<code>.cpp</code>都可以用于代码的定义和实现，两个后缀名在本项目当中仅用来区分哪个文件统领了源码目录。</p>
 <p>以上仅适用一般情况，并非强制要求。</p>
 <ul>
 <li>include的使用</li>
 </ul>
-<p>由于本项目并未采用“定义与实现分离开来，后期统一链接”的形式，因此源码包含的结构有点奇怪。</p>
+<p>由于本项目并未采用“定义与实现分离开来，后期统一链接”的形式。</p>
 <p>我们不建议开发者将此项目中的<code>#include</code>看作C/C++中的包含，而是看作import（类似java，py的设计）。</p>
 <p>因为本项目的编译指令只有一条，不存在链接，因此我们不建议两个文件之间相互包含（请尽量编写不循环引用的代码）。</p>
-<p><strong>我们承认我们并没有在编写“纯正的现代C++代码”。</strong></p>
-<ul>
-<li>代码风格</li>
-</ul>
-<p>尽管这个项目是用C++编写的，但是其掺杂了很多java的元素。</p>
-<p>例如把所有的成员都写在类里、一个大类编写在一个文件里、代码格式化风格以及上述所说的代码引用方法。请阅读源码时不要见怪。</p>
 <h3 id="项目架构">项目架构</h3>
 <p>我们来介绍与源码有关的目录：</p>
 <ul>
@@ -222,7 +218,7 @@ href="index.html">回到上一级</a> <br></p>
 </ul>
 <p>该目录存储Stamon的标准库源码。</p>
 <ul>
-<li><code>src/error</code></li>
+<li><code>src/exception</code></li>
 </ul>
 <p>该目录存储报错信息的生成函数。</p>
 <ul>
@@ -256,7 +252,7 @@ href="index.html">回到上一级</a> <br></p>
 <li><code>include</code></li>
 <li><code>src/ast</code></li>
 <li><code>src/config</code></li>
-<li><code>src/error</code></li>
+<li><code>src/exception</code></li>
 <li><code>src/compiler</code></li>
 <li><code>src/vm</code></li>
 <li><code>src/sfn</code></li>

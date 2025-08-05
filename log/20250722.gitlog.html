@@ -174,44 +174,14 @@
 </h1>
 <p><a href="../index.html">回到首页</a> <br> <a
 href="index.html">回到上一级</a> <br></p>
-<h1 id="调试指南第二版">调试指南（第二版）</h1>
-<ul>
-<li>注意：该文档已过时！</li>
-</ul>
-<p>我在根目录下编写了Makefile。</p>
-<p>其中，Makefile的主要用法是： * make release：编译发行版</p>
-<p>目前，Makefile能在Windows系统下使用，如果想要在其他系统编译，可以更改Makefile。</p>
-<p>编译项目之前，需要确保拥有以下工具（附我的工具版本，可以参考）：</p>
-<ol type="1">
-<li>make：GNU Make 3.82.90</li>
-<li>gcc：gcc (x86_64-posix-seh-rev1, Built by MinGW-Builds project)
-13.1.0</li>
-<li>strip：GNU strip (GNU Binutils) 2.39</li>
-<li>upx：upx 4.0.2</li>
-</ol>
-<h1 id="调试指南第一版">调试指南（第一版）</h1>
-<p>无论是调试你自己编写的测试代码，抑或是调试测试样例，都至少需要配置好以下工具：</p>
-<ul>
-<li>make（参考版本：GNU Make 3.82.90）</li>
-<li>gcc（参考版本：<code>gcc (x86_64-posix-seh-rev1, Built by MinGW-Builds project) 13.1.0</code>或<code>TDM-GCC 10</code>等）</li>
-<li><strong>[可选]</strong> strip（参考版本：GNU strip (GNU Binutils)
-2.39）</li>
-<li><strong>[可选]</strong> upx（参考版本：upx 4.0.2）</li>
-</ul>
-<p><strong>注意：该项目的Makefile是基于win32的，如果你想要移植该项目到别的系统，请尝试修改Makefile。</strong></p>
-<p><strong>编译该项目时默认依赖库采用<code>stdc_implemented</code>，如果你所在的平台不支持C标准库，请自行实现依赖库（详见<code>依赖库开发指导.md</code>）。</strong></p>
-<h5 id="调试">调试：</h5>
-<p>你可以在命令行中键入以下指令：</p>
-<ul>
-<li><code>make build</code>：编译项目，生成一个<code>test.exe</code>，即项目可执行文件</li>
-<li><code>make run</code>：运行项目</li>
-<li><code>make zip</code>：将项目可执行文件进行压缩
-<strong>（该指令需要用到strip和upx）</strong></li>
-</ul>
-<blockquote>
-<p>——摘自<code>工作日志20230131.md</code></p>
-</blockquote>
-<p><br></p>
-<p><a href="【过时】调试指南.gitlog.html">查看该文件的提交记录</a></p>
+<p>commit 591869248eeeef2d802dc7267fd338547dc12356 Author: 瞿相荣 <a
+href="mailto:woshiquxiangrong@outlook.com"
+class="email">woshiquxiangrong@outlook.com</a> Date: Tue Jul 22 17:20:13
+2025 +0800</p>
+<pre><code>feat(grammer): add new syntax
+
+please refer to the work log for details
+
+BREAKING CHANGE: the new stvc format is incompatible</code></pre>
 </body>
 </html>
