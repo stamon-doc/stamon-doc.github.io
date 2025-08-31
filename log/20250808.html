@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>stamon-doc</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<h1 style="font-family: Arial; color: #00BBFF; text-align:center;">
+<i>Stamon 文档站</i>
+</h1>
+<p><a href="../index.html">回到首页</a> <br> <a
+href="index.html">回到上一级</a> <br></p>
+<h1 id="工作日志">2025/08/08 工作日志</h1>
+<p>本次更新不会修改版本。
+本次更新重构了文件编解码部分和顶层设计部分，封装了输入输出流，并由此删去了不必要的依赖库。</p>
+<h3 id="重新规范文件编解码的端序">重新规范文件编解码的端序</h3>
+<p>由于不同架构的机器在存储时会有大小端序之差，因此为了让字节码能跨平台编译运行，我规范化了端序。</p>
+<p><strong>编码生成的文件应该满足大端序</strong>，而为了照顾不同机器的不同端序，我引入了新的配置，开发者可以根据自己实际平台的端序来调整配置。</p>
+<p>我在<code>StamonConfig.hpp</code>中新增了一个枚举和两个标识符，用于标记不同机器的大小端配置，他们默认全是小端序：</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> STAMON_CODING_ENDIAN <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 机器的大小端控制</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    StamonCodingLittleEndian <span class="op">=</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    StamonCodingBigEndian</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">/*...中略无关代码...*/</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">// 编码的端序</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> StamonEncodingEndian <span class="op">=</span> StamonCodingLittleEndian<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">// 解码的顺序</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> StamonDecodingEndian <span class="op">=</span> StamonCodingLittleEndian<span class="op">;</span></span></code></pre></div>
+<p>值得注意的是，无论本地的机器采用什么样的端序，如果满足<code>StamonEncodingEndian==StamonDecodingEndian</code>（即编解码端序一致），那么编码生成的文件一定能在本地解码运行，但在其他平台上有可能出现错误。这意味着<strong>如果开发者只有在本地编译运行字节码的需求，那么不一定需要费尽心思处理大小端序冲突，只要让编解码端序一致即可。</strong></p>
+<h3 id="大规模重构stamonaction">大规模重构stamon::action</h3>
+<h5 id="正式引入bufferstream">正式引入BufferStream</h5>
+<p>我将<code>IOStream.cpp</code>改名为<code>BufferStream.cpp</code>，并完全重构了它，该文件存储了内存输入输出流的实现。在我目前的构想里，分步行动机制在执行一个动作组时，相邻的行动工具应该使用内存来存储并传递数据。<code>BufferInStream</code>和<code>BufferOutStream</code>成为了内存数据的载体。</p>
+<p>解码器通常会作为动作组的第一个行动工具，在这种情况下，起始数据可能来源于键盘输入、文件读取等操作。但无论起始数据的获取形式如何，最终都要拷贝到内存中，以<code>BufferInStream</code>的形式传入到解码器中。</p>
+<p>和上述情况对称的，编码器通常会作为动作组的最后一个工具，在这种情况下，结果数据可能会被保存到文件。但无论结果数据的保存形式如何，最终都要先将结果数据拷贝到内存中，以<code>BufferOutStream</code>的形式返回给分步行动机制，机制再根据具体情况处理。</p>
+<p>在完成<code>BufferStream.cpp</code>的编写后，我开始修改所有的编解码器。之前，各个解码器都是手动托管内存读取以提升安全性，冗余代码多；编码器也直接操作保存到文件，不适合分步行动机制的发展。现在，我让他们统一使用<code>BufferStream.cpp</code>来托管内存数据，这同时解决了“编解码器冗余代码多”和“不适合分步行动机制发展”两大难题。</p>
+<p>我们来看看<code>BufferStream.cpp</code>中的核心接口。</p>
+<p>首先是<code>BufferInStream</code>类：</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">接口原型</th>
+<th style="text-align: left;">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>void reset()</code></td>
+<td style="text-align: left;">重新从头开始读取</td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><code>template&lt;typename T&gt; void read(T &amp;data)</code></td>
+<td style="text-align: left;">读取一个数据</td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><code>template&lt;typename T, int n&gt; void readArray(T (&amp;data)[n])</code></td>
+<td style="text-align: left;">读取一个数组</td>
+</tr>
+</tbody>
+</table>
+<p>为了方便理解，我提供了一个代码片段作为例子，在该片段中，我们假设有一个<code>BufferInStream</code>类型的变量<code>stream</code>，并且stream接下来要读取的内存数据为<code>0x12,0x34,0x56,0x78,0x90</code>，本地机器的解码端序为小端序：</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> x<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> arr1<span class="op">[</span><span class="dv">2</span><span class="op">],</span> arr2<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>stream<span class="op">.</span>read<span class="op">(</span>x<span class="op">);</span> <span class="co">//读取x = 0x12</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>stream<span class="op">.</span>readArray<span class="op">(</span>arr1<span class="op">);</span> <span class="co">//读取arr1 = {0x34, 0x56}</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>stream<span class="op">.</span>read<span class="op">(</span>arr2<span class="op">);</span> <span class="co">//读取arr2 = {0x90, 0x78}</span></span></code></pre></div>
+<p>值得注意的是，<code>arr2</code>没有和<code>arr1</code>一样顺序读取，这是因为<code>stream.read</code>将<code>arr2</code>看作了一个整体，又因为本地机器是小端序的缘故，所以逆序读取了数据。以上例子不仅提供了读取的示例，也警醒了开发者不要把<code>read</code>和<code>readArray</code>混为一谈。</p>
+<p>接着是<code>BufferOutStream</code>类，他的用法基本与<code>BufferInStream</code>对称：</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">接口原型</th>
+<th style="text-align: left;">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td
+style="text-align: left;"><code>template&lt;typename T&gt; void write(T &amp;data)</code></td>
+<td style="text-align: left;">写入一个数据</td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><code>template&lt;typename T, int n&gt; void writeArray(T (&amp;data)[n])</code></td>
+<td style="text-align: left;">写入一个数组</td>
+</tr>
+</tbody>
+</table>
+<p>在实现完<code>BufferStream.cpp</code>之后，其他的Reader和Writer也被修改，所有的数据读写操作都由<code>BufferInStream</code>和<code>BufferOutStream</code>托管，这极大减少了冗余代码，也统一了编解码器的实现模式。</p>
+<h5 id="封装常量表编解码器">封装常量表编解码器</h5>
+<p>将常量表的读写功能单独提取出来，封装到<code>ConstTabReader.cpp</code>和<code>ConstTabWriter.cpp</code>中，这是在为未来的多字节码标准做准备。</p>
+<h3 id="删除不必要的代码">删除不必要的代码</h3>
+<p>我剔除了AST部分一些获取节点数据的方法，我认为这是不必要的，直接访问AST节点的成员即可。</p>
+<p>因为构造函数<code>ObjectManager()</code>并没有被用到，所以我删除了他。</p>
+<p>由于<code>LineReader</code>可以使用<code>BufferInStream</code>实现。因此移除了LineReader。又因为LineReader被移除，所以FileMap也被认为是不需要的。所有的FileMap都被StringMap代替。</p>
+<h3 id="修正了命令行工具的文案细节">修正了命令行工具的文案细节</h3>
+<p>具体请参见<code>Main.cpp</code>的修改。</p>
+<h3 id="修改了logo目录的文件命名">修改了logo目录的文件命名</h3>
+<p>见<code>mascot_v2.2.9.jpg</code>的文件修改记录。</p>
+<h3 id="修改了编译端的顶层设计">修改了编译端的顶层设计</h3>
+<p>我认为之后的顶层前端功能都可以用函数来代替类，以此简便代码的调用方式。在这个决定上，我删除了<code>Compiler</code>类。取而代之的是两个函数：</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ArrayList<span class="op">&lt;</span>SourceSyntax<span class="op">&gt;</span> <span class="op">*</span>ParseTargetProject<span class="op">(</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    STMException <span class="op">*</span>e<span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    ArrayList<span class="op">&lt;</span>String<span class="op">&gt;</span> <span class="op">*</span>error_msg<span class="op">,</span> ArrayList<span class="op">&lt;</span>String<span class="op">&gt;</span> <span class="op">*</span>warning_msg<span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    String filename<span class="op">,</span> <span class="dt">bool</span> is_support_import<span class="op">,</span> ArrayList<span class="op">&lt;</span>SourceSyntax<span class="op">&gt;</span> <span class="op">*</span>src<span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    StringMap<span class="op">&lt;</span><span class="dt">void</span><span class="op">&gt;</span> filemap<span class="op">,</span> SyntaxScope global_scope</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">);</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">编译一个Stamon项目。</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">e是异常类，error_msg是存储报错信息用的列表，warning_msg是存储警告信息用的列表，filename是源码文件名，is_support_import_表示是否支持引用其他源码，src是存储各个文件语法树用的列表，filemap是用来标记文件是否被引用过的映射表，global_scope是全局作用域。</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">返回处理后的存储着各个文件语法树的列表（即处理后的src）。</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>ast<span class="op">::</span>AstNode <span class="op">*</span>MergeAST<span class="op">(</span>ArrayList<span class="op">&lt;</span>SourceSyntax<span class="op">&gt;</span> <span class="op">*</span>syntax_list<span class="op">);</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">将各个语法树合并为一个。syntax_list是存储着各个文件语法树的列表。返回合并后的根节点。</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span></code></pre></div>
+<p><br></p>
+<p><a href="20250808.gitlog.html">查看该文件的提交记录</a></p>
+</body>
+</html>

@@ -267,12 +267,10 @@ href="index.html">回到上一级</a> <br></p>
 <h5 id="endnodeerror-1">EndNodeError</h5>
 <p>解码过程中缺失结束单元，请检查编码文件或重新编译。</p>
 <h3 id="astirreader">astirreader</h3>
-<h5 id="codesizeerror">CodeSizeError</h5>
-<p>AST-IR文件过小，请检查编码文件或重新编译。</p>
 <h5 id="formaterror-1">FormatError</h5>
 <p>该文件的魔数不是0xABDB，由此推断该文件不是AST-IR字节码，请检查编码文件或重新编译。</p>
-<h5 id="constantserror-1">ConstantsError</h5>
-<p>该文件存在未知的常量，请检查编码文件或重新编译。</p>
+<h5 id="nodeerror-1">NodeError</h5>
+<p>检测到未知的AST-IR单元，请检查编码文件或重新编译。</p>
 <h3 id="objectmanager">objectmanager</h3>
 <h5 id="memoryerror">MemoryError</h5>
 <p>GC后占用内存仍然超出限制，请调整内存大小限制或优化代码。</p>
@@ -292,6 +290,14 @@ href="index.html">回到上一级</a> <br></p>
 <p>SFN产生的综合性错误。</p>
 <h5 id="sfnwarning">SFNWarning</h5>
 <p>SFN产生的综合性警告。</p>
+<h3 id="bufferstream">bufferstream</h3>
+<h5 id="datasizeerror">DataSizeError</h5>
+<p>数据在读取过程中过早读完，即数据过小，此错误一般发生在文件解码过程中。</p>
+<h3 id="consttabreader">consttabreader</h3>
+<h5 id="constantserror-1">ConstantsError</h5>
+<p>该文件存在未知的常量，请检查编码文件或重新编译。</p>
+<h5 id="formaterror-3">FormatError</h5>
+<p>常量表的格式错误，请检查编码文件或重新编译。</p>
 <p><br></p>
 <p><a
 href="Stamon异常信息修复指南.gitlog.html">查看该文件的提交记录</a></p>

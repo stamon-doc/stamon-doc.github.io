@@ -252,9 +252,10 @@ class="sourceCode c++"><code class="sourceCode cpp"><span id="cb1-1"><a href="#c
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    Matcher matcher<span class="op">,</span> STMException<span class="op">*</span> e<span class="op">,</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    SyntaxScope global_scope<span class="op">,</span> String filename<span class="op">,</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    ArrayList<span class="op">&lt;</span>SourceSyntax<span class="op">&gt;*</span> src<span class="op">,</span> FileMap map<span class="op">,</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    ArrayList<span class="op">&lt;</span>String<span class="op">&gt;*</span> error_msg<span class="op">,</span> <span class="dt">bool</span> is_support_import</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span></code></pre></div>
-<p>其中，<code>matcher</code>为Token匹配器；<code>global_scope</code>为给定的全局作用域；<code>filename</code>为当前匹配的文件名；<code>src</code>为一个以文件为单位所存储的AST列表，作为输出参数，在递归分析其他被引用的文件时，语法分析器会把被引用文件的AST加入到src，但其本身生成的AST并不会加入进去；<code>map</code>用于标记某些文件是否被分析过（防止递归引用）；<code>error_msg</code>作为输出参数，用于存储报错信息；<code>is_support_import</code>用于指示是否支持import（防止某些平台不支持文件处理）。</p>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    ArrayList<span class="op">&lt;</span>String<span class="op">&gt;*</span> error_msg<span class="op">,</span> ArrayList<span class="op">&lt;</span>String<span class="op">&gt;*</span> warning_msg<span class="op">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> is_support_import</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span></code></pre></div>
+<p>其中，<code>matcher</code>为Token匹配器；<code>global_scope</code>为给定的全局作用域；<code>filename</code>为当前匹配的文件名；<code>src</code>为一个以文件为单位所存储的AST列表，作为输出参数，在递归分析其他被引用的文件时，语法分析器会把被引用文件的AST加入到src，但其本身生成的AST并不会加入进去；<code>map</code>用于标记某些文件是否被分析过（防止递归引用）；<code>error_msg</code>作为输出参数，用于存储报错信息；<code>warning_msg</code>作为输出参数，用于存储警告信息；<code>is_support_import</code>用于指示是否支持import（防止某些平台不支持文件处理）。</p>
 <p>在初始化语法分析器后，调用<code>ast::AstNode* Parse()</code>函数即可获得AST的根节点。</p>
 <h5 id="基本原理">基本原理</h5>
 <p>语法分析器主要采用递归分析，具体的文法请见<code>src/compiler/ebnf.txt</code>。</p>
