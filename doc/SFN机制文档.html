@@ -267,20 +267,23 @@ class="sourceCode c++"><code class="sourceCode cpp"><span id="cb1-1"><a href="#c
 class="sourceCode c++"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sfn_print<span class="op">(</span>SFN_PARA_LIST<span class="op">);</span></span></code></pre></div>
 <p>该定义应作为前置定义放在<code>SFN</code>类的实现之前</p>
 <h5 id="实现外部函数">实现外部函数</h5>
-<p>外部函数可以使用依赖库上的函数，对于移植在平台上的开发者而言，也可以引入更多平台特有的函数进行操作。外部函数应该使用<code>stamon::exception::sfn::SFNError</code>作为异常生成函数，开发者也可以引入更多细化的异常生成函数。</p>
+<p>外部函数可以使用移植接口上的函数，对于移植在平台上的开发者而言，也可以引入更多平台特有的函数进行操作。外部函数应该使用<code>stamon::exception::sfn::SFNError</code>作为异常生成函数，开发者也可以引入更多细化的异常生成函数。</p>
 <p><code>sfn_print</code>的实际实现如下：</p>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sfn_print<span class="op">(</span>SFN_PARA_LIST<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    STMException <span class="op">*</span>ex <span class="op">=</span> sfn<span class="op">.</span>ex<span class="op">;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    stamon<span class="op">::</span>datatype<span class="op">::</span>DataType <span class="op">*</span>val <span class="op">=</span> arg<span class="op">-&gt;</span>data<span class="op">;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>val<span class="op">-&gt;</span>getType<span class="op">()</span> <span class="op">!=</span> stamon<span class="op">::</span>datatype<span class="op">::</span>StringTypeID<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        THROW<span class="op">(</span>stamon<span class="op">::</span>exception<span class="op">::</span>sfn<span class="op">::</span>SFNError<span class="op">(</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;sfn_print()&quot;</span><span class="op">,</span> <span class="st">&quot;invalid type&quot;</span><span class="op">));</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    platform_print<span class="op">(((</span>stamon<span class="op">::</span>datatype<span class="op">::</span>StringType <span class="op">*)</span> val<span class="op">)-&gt;</span>getVal<span class="op">());</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">using</span> <span class="kw">namespace</span> stamon<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    STMException <span class="op">*</span>ex <span class="op">=</span> sfn<span class="op">.</span>ex<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    datatype<span class="op">::</span>DataType <span class="op">*</span>val <span class="op">=</span> arg<span class="op">-&gt;</span>data<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>val<span class="op">-&gt;</span>getType<span class="op">()</span> <span class="op">!=</span> datatype<span class="op">::</span>StringTypeID<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        THROW<span class="op">(</span>exception<span class="op">::</span>sfn<span class="op">::</span>SFNError<span class="op">(</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;sfn_print()&quot;</span><span class="op">,</span> <span class="st">&quot;invalid type&quot;</span><span class="op">));</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    platform_print<span class="op">(((</span>datatype<span class="op">::</span>StringType <span class="op">*)</span> val<span class="op">)-&gt;</span>getVal<span class="op">());</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>该实现应该放在<code>SFN</code>类的实现之后</p>
 <h5 id="绑定外部函数">绑定外部函数</h5>
 <p>实现完外部函数后，就要将其绑定在SFN上，以便调用时能找到并调用该外部函数。外部函数需要绑定在SFN的构造函数中。SFN的构造函数代码以如下为例：</p>
@@ -296,7 +299,7 @@ class="sourceCode c++"><code class="sourceCode cpp"><span id="cb4-1"><a href="#c
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    sfn_functions<span class="op">.</span>put<span class="op">(</span>String<span class="op">(</span><span class="st">&quot;str&quot;</span><span class="op">),</span> sfn_str<span class="op">);</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">//...略...</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p><code>sfn_functions</code>是一个<code>StringMap</code>，存储的值类型是符合外部函数原型的函数指针。在构造函数中加入利用<code>sfn_functions.put</code>来指定端口号及其对应的外部函数</p>
+<p><code>sfn_functions</code>是一个Map，存储的值类型是符合外部函数原型的函数指针。在构造函数中加入利用<code>sfn_functions.put</code>来指定端口号及其对应的外部函数</p>
 <p><br></p>
 <p><a href="SFN机制文档.gitlog.html">查看该文件的提交记录</a></p>
 </body>

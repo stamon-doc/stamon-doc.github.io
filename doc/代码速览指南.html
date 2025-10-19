@@ -174,7 +174,10 @@
 </h1>
 <p><a href="../index.html">回到首页</a> <br> <a
 href="index.html">回到上一级</a> <br></p>
-<h1 id="代码速览指南第三版">代码速览指南（第三版）</h1>
+<h1 id="代码速览指南第四版">代码速览指南（第四版）</h1>
+<h3 id="第四版前言">第四版前言</h3>
+<p>进一步优化了表达方式，将源码目录功能和阅读顺序统一为一个表格。</p>
+<p>——2025年10月5日</p>
 <h3 id="第三版前言">第三版前言</h3>
 <p>使用了表格等更清晰的表述方式。</p>
 <p>——2025年8月19日</p>
@@ -189,17 +192,18 @@ href="index.html">回到上一级</a> <br></p>
 <ul>
 <li>文件后缀</li>
 </ul>
-<p>本项目中，依赖库的源码后缀统一为<code>.h</code>或<code>.hpp</code>格式；主体实现部分中，每一个源码子目录由一个<code>.hpp</code>文件来统领其他的<code>.cpp</code>文件（要求开发者只需包含此<code>.hpp</code>文件即可调用该子目录下的所有代码）。</p>
+<p>本项目中，移植接口的源码后缀统一为<code>.h</code>或<code>.hpp</code>格式；主体实现部分中，每一个源码子目录由一个<code>.hpp</code>文件来统领其他的<code>.cpp</code>文件（要求开发者只需包含此<code>.hpp</code>文件即可调用该子目录下的所有代码）。</p>
 <p><code>.hpp</code>和<code>.cpp</code>都可以用于代码的定义和实现，两个后缀名在本项目当中仅用来区分哪个文件统领了源码目录。</p>
 <p>以上仅适用一般情况，并非强制要求。</p>
 <ul>
 <li>include的使用</li>
 </ul>
 <p>由于本项目并未采用“定义与实现分离开来，后期统一链接”的形式。</p>
-<p>我们不建议开发者将此项目中的<code>#include</code>看作C/C++中的包含，而是看作import（类似java，py的设计）。</p>
+<p>我们不建议开发者将此项目中的<code>#include</code>看作C/C++中的包含，而是看作import（类似java，python的设计）。</p>
 <p>因为本项目的编译指令只有一条，不存在链接，因此我们不建议两个文件之间相互包含（请尽量编写不循环引用的代码）。</p>
-<h3 id="项目架构">项目架构</h3>
-<p>我们来介绍与源码有关的目录：</p>
+<h3 id="项目架构及源码阅读顺序">项目架构及源码阅读顺序</h3>
+<p>我们来介绍与源码有关的目录：
+我们将用一个表格来解释每个目录的用途。目录从顶至底，也是推荐的源码目录阅读顺序。</p>
 <table>
 <colgroup>
 <col style="width: 50%" />
@@ -215,12 +219,7 @@ href="index.html">回到上一级</a> <br></p>
 <tr>
 <td style="text-align: left;"><code>include</code></td>
 <td
-style="text-align: left;">该目录用于存放依赖库文件，此目录又有多个子目录。其中<code>template</code>子目录用于存放依赖库模板，其余子目录是依赖库的不同平台实现。</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>src</code></td>
-<td
-style="text-align: left;">该目录存储主体实现部分的代码，与依赖库实现分割开来，以此实现更强的可移植性。该目录下存放有若干子目录和项目主要文件（例如程序的入口源码）。</td>
+style="text-align: left;">该目录用于存放移植接口的定义和不同方法的实现，此目录又有多个子目录。其中<code>interface</code>子目录用于存放移植接口的定义，其余子目录是移植接口的不同方法实现。移植接口的更多介绍位于<code>移植接口开发指导.md</code></td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>src/ast</code></td>
@@ -228,29 +227,24 @@ style="text-align: left;">该目录存储主体实现部分的代码，与依赖
 style="text-align: left;">该目录存储抽象语法树（AST）的数据结构，主要用于语法分析。</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>src/data_type</code></td>
-<td style="text-align: left;">该目录存储stamon数据类型的数据结构。</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>src/bin-include</code></td>
-<td style="text-align: left;">该目录存储Stamon的标准库源码。</td>
+<td style="text-align: left;"><code>src/config</code></td>
+<td style="text-align: left;">该目录存储程序运行的默认配置参数。</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>src/exception</code></td>
 <td style="text-align: left;">该目录存储报错信息的生成函数。</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>src/config</code></td>
-<td style="text-align: left;">该目录存储程序运行的默认配置参数。</td>
-</tr>
-<tr>
 <td style="text-align: left;"><code>src/compiler</code></td>
 <td style="text-align: left;">该目录存储编译器的实现。</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>src/ir</code></td>
-<td
-style="text-align: left;">该目录存储Stamon的中间代码数据结构，中间代码生成器以及解析器。</td>
+<td style="text-align: left;"><code>src/data_type</code></td>
+<td style="text-align: left;">该目录存储stamon数据类型的数据结构。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>src/vm</code></td>
+<td style="text-align: left;">该目录存储虚拟机的实现。</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>src/sfn</code></td>
@@ -258,32 +252,26 @@ style="text-align: left;">该目录存储Stamon的中间代码数据结构，中
 style="text-align: left;">该目录存储Stamon调用虚拟机外部库的实现。</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>src/vm</code></td>
-<td style="text-align: left;">该目录存储虚拟机的实现。</td>
+<td style="text-align: left;"><code>src/ir</code></td>
+<td
+style="text-align: left;">该目录存储Stamon的中间代码数据结构，中间代码生成器以及解析器。</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>src/action</code></td>
 <td
 style="text-align: left;">该目录用于存储分步行动机制的实现代码（包括一些文件的编解码实现）。</td>
 </tr>
+<tr>
+<td style="text-align: left;"><code>src</code></td>
+<td
+style="text-align: left;">该目录存储主体实现部分的代码，与移植接口实现分割开来，以此实现更强的可移植性。该目录下存放有若干子目录和项目主要文件（例如程序的入口源码）。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>src/bin-include</code></td>
+<td style="text-align: left;">该目录存储Stamon的标准库源码。</td>
+</tr>
 </tbody>
 </table>
-<h3 id="源码阅读顺序">源码阅读顺序</h3>
-<p>我们建议开发者先从基础出发，一步步看到主函数的实现。</p>
-<p>因此一个合理的源码阅读流程是（以目录为单位）：</p>
-<ul>
-<li><code>include</code></li>
-<li><code>src/ast</code></li>
-<li><code>src/config</code></li>
-<li><code>src/exception</code></li>
-<li><code>src/compiler</code></li>
-<li><code>src/vm</code></li>
-<li><code>src/sfn</code></li>
-<li><code>src/action</code></li>
-<li><code>src/ir</code></li>
-<li><code>src</code></li>
-<li><code>src/bin-include</code></li>
-</ul>
 <p><br></p>
 <p><a href="代码速览指南.gitlog.html">查看该文件的提交记录</a></p>
 </body>

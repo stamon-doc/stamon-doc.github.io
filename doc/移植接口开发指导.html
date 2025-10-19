@@ -174,24 +174,31 @@
 </h1>
 <p><a href="../index.html">回到首页</a> <br> <a
 href="index.html">回到上一级</a> <br></p>
-<p>commit 6dbe26027942197848493a6f59400d0318892667 Author: 瞿相荣 <a
-href="mailto:woshiquxiangrong@outlook.com"
-class="email">woshiquxiangrong@outlook.com</a> Date: Thu Jul 31 12:28:13
-2025 +0800</p>
-<pre><code>doc(*): update document fully
-
-1. update outdated interfaces
-2. remove outdated document
-please refer to the work log for details</code></pre>
-<p>commit 7e6472ede9bf9d8d8b85d717d989de5277a5b08d Author: 瞿相荣 <a
-href="mailto:woshiquxiangrong@outlook.com"
-class="email">woshiquxiangrong@outlook.com</a> Date: Mon Feb 5 11:52:22
-2024 +0800</p>
-<pre><code>feat(*): submit the codes of parser
-
-1. submit the codes of parser
-2. update the libraries
-3. fix some bugs
-please refer to the work log for details</code></pre>
+<h1 id="移植接口开发指导">移植接口开发指导</h1>
+<p>移植接口的定义位于<code>include/interface</code>目录中，本项目的接口定义设计参考了<code>C#</code>的接口类设计。因此文件名和类名的开头都会带上一个字母<code>I</code>，这是<code>Interface</code>的缩写。由于有些底层库不需要任何修改即可移植，因此也被归类到<code>include/interface</code>目录中</p>
+<p>Stamon的移植接口类设计采用一套自创的设计方法——<strong>CITP</strong>（<strong>Curiously
+Iterating Template
+Pattern，奇异递推模板模式</strong>）。详细的设计原理和思路指导见<code>CITP设计文档.md</code>。利用CITP强大的接口约束表达力，开发者在按要求实现对应接口后，可以非常轻松的将自己的实现对接到项目中。</p>
+<p>移植接口的实现也会被保存到<code>include</code>目录下。</p>
+<p>移植接口可以有多种实现方式，目前被收录的官方实现如下：</p>
+<table>
+<thead>
+<tr>
+<th
+style="text-align: left;">目录名（默认<code>include</code>目录下）</th>
+<th style="text-align: left;">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>stdc_implemented</code></td>
+<td style="text-align: left;">标准C实现</td>
+</tr>
+</tbody>
+</table>
+<p>开发者在移植过程中，可以挑选并接入最佳的现成移植实现，也可以自己动手实现。</p>
+<p>欢迎更多开发者贡献在不同平台上的移植接口的实现。</p>
+<p><br></p>
+<p><a href="移植接口开发指导.gitlog.html">查看该文件的提交记录</a></p>
 </body>
 </html>
