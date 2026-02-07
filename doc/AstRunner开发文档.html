@@ -248,7 +248,7 @@ href="index.html">回到上一级</a> <br></p>
 <p>我们来逐步讲解。</p>
 <p>首先是二进制文件读取为AstIr，这部分的实现位于<code>src/action/AstIrReader.cpp</code>，AstIrReader类的主要接口有：</p>
 <ul>
-<li><code>AstIrReader(STMException *e, String filename)</code>：构造函数，filename为文件名</li>
+<li><code>AstIrReader(log::Exception *e, String filename)</code>：构造函数，filename为文件名</li>
 <li><code>bool readHeader()</code>：读取字节码头，读取失败则抛出异常并返回false，否则返回true</li>
 <li><code>ArrayList&lt;AstIr&gt; ReadIR()</code>：读取AstIr，返回由AstIr组成的ArrayList</li>
 </ul>
@@ -285,7 +285,7 @@ class="sourceCode c++"><code class="sourceCode cpp"><span id="cb2-1"><a href="#c
 class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>RetStatus execute<span class="op">(</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    AstNode<span class="op">*</span> main_node<span class="op">,</span> <span class="dt">bool</span> isGC<span class="op">,</span> <span class="dt">int</span> vm_mem_limit<span class="op">,</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    ArrayList<span class="op">&lt;</span>DataType<span class="op">*&gt;</span> tableConst<span class="op">,</span> ArrayList<span class="op">&lt;</span>String<span class="op">&gt;</span> args<span class="op">,</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    STMException<span class="op">*</span> e</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    log<span class="op">::</span>Exception<span class="op">*</span> e</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">);</span></span></code></pre></div>
 <p>虚拟机在执行过程中会向ObjectManager申请对象，来实现GC机制。详见<code>对象管理器文档.md</code></p>
 <p><br></p>

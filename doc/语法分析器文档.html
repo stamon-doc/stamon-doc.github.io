@@ -249,7 +249,7 @@ Parser类（<code>stamon::c::Parser</code>）即为语法分析器的主体。</
 <p>语法分析器的构造函数原型为：</p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode c++"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Parser<span class="op">(</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    Matcher matcher<span class="op">,</span> STMException<span class="op">*</span> e<span class="op">,</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    Matcher matcher<span class="op">,</span> log<span class="op">::</span>Exception<span class="op">*</span> e<span class="op">,</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    SyntaxScope global_scope<span class="op">,</span> String filename<span class="op">,</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    ArrayList<span class="op">&lt;</span>SourceSyntax<span class="op">&gt;*</span> src<span class="op">,</span> HashMap<span class="op">&lt;</span>String<span class="op">,</span> <span class="dt">bool</span><span class="op">&gt;</span> map<span class="op">,</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    ArrayList<span class="op">&lt;</span>String<span class="op">&gt;*</span> error_msg<span class="op">,</span> ArrayList<span class="op">&lt;</span>String<span class="op">&gt;*</span> warning_msg<span class="op">,</span></span>

@@ -248,7 +248,7 @@ Native。是Stamon的一个调用外部功能的机制。你可以用它与解�
 <h3 id="核心接口">核心接口</h3>
 <p>SFN类的主要接口有：</p>
 <ul>
-<li><code>SFN(STMException *e, vm::ObjectManager *objman)</code>：构造函数objman为当前运行时的ObjectManager对象。</li>
+<li><code>SFN(log::Exception *e, vm::ObjectManager *objman)</code>：构造函数objman为当前运行时的ObjectManager对象。</li>
 <li><code>void call(String port, datatype::Variable *arg)</code>：根据端口号调用本地库。</li>
 </ul>
 <h3 id="自定义外部功能">自定义外部功能</h3>
@@ -274,7 +274,7 @@ class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="#c
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">using</span> <span class="kw">namespace</span> stamon<span class="op">;</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    STMException <span class="op">*</span>ex <span class="op">=</span> sfn<span class="op">.</span>ex<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    log<span class="op">::</span>Exception <span class="op">*</span>ex <span class="op">=</span> sfn<span class="op">.</span>ex<span class="op">;</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    datatype<span class="op">::</span>DataType <span class="op">*</span>val <span class="op">=</span> arg<span class="op">-&gt;</span>data<span class="op">;</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>val<span class="op">-&gt;</span>getType<span class="op">()</span> <span class="op">!=</span> datatype<span class="op">::</span>StringTypeID<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        THROW<span class="op">(</span>exception<span class="op">::</span>sfn<span class="op">::</span>SFNError<span class="op">(</span></span>
@@ -288,7 +288,7 @@ class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="#c
 <h5 id="绑定外部函数">绑定外部函数</h5>
 <p>实现完外部函数后，就要将其绑定在SFN上，以便调用时能找到并调用该外部函数。外部函数需要绑定在SFN的构造函数中。SFN的构造函数代码以如下为例：</p>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode c++"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>SFN<span class="op">(</span>STMException <span class="op">*</span>e<span class="op">,</span> vm<span class="op">::</span>ObjectManager <span class="op">*</span>objman<span class="op">)</span> <span class="op">{</span></span>
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>SFN<span class="op">(</span>log<span class="op">::</span>Exception <span class="op">*</span>e<span class="op">,</span> vm<span class="op">::</span>ObjectManager <span class="op">*</span>objman<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    ex <span class="op">=</span> e<span class="op">;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    manager <span class="op">=</span> objman<span class="op">;</span></span>

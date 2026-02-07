@@ -267,7 +267,7 @@ class="sourceCode c++"><code class="sourceCode cpp"><span id="cb1-1"><a href="#c
 <tbody>
 <tr>
 <td
-style="text-align: left;"><code>ObjectManager(bool isGC, unsigned long long mem_limit, int pool_cache_size, STMException* e)</code></td>
+style="text-align: left;"><code>ObjectManager(bool isGC, unsigned long long mem_limit, int pool_cache_size, log::Exception* e)</code></td>
 <td
 style="text-align: left;"><code>isGC</code>代表对象管理器是否执行GC，若执行GC，则<code>mem_limit</code>有意义，且代表GC的内存限制，若不执行GC，则对象管理器会一直运行直到内存溢出。pool_cache_size代表内存池的缓存大小。对pool_cache_size的具体解释应看<code>MemoryPool.hpp</code>的实现</td>
 </tr>
