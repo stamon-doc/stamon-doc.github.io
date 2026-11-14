@@ -88,7 +88,7 @@ if __name__=='__main__':
     
     print('-----CLONE-----')
     
-    os.system('git clone https://github.com/CLimber-Rong/stamon.git workspace')
+    os.system('git clone -b legacy https://github.com/CLimber-Rong/stamon.git workspace')
     
     # 先生成工作日志
     print('-----MAKE LOG-----')
